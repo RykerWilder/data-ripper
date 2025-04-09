@@ -10,9 +10,10 @@ def check_password(password):
     for line in response.text.splitlines():
         if suffix in line:
             count = int(line.split(':')[1])
-            print(f"⚠️ Password compromessa! Trovata in {count} violazioni.")
+            print(f"Password Compromised! Found in {count} breaches.")
             return
-    print("✅ Password sicura (non trovata in violazioni note).")
+    print("Strong password, not found in known breaches.")
 
-password = input("Inserisci la password da verificare: ")
-check_password(password)
+if __name__ == "__main__":
+    password = input("Enter the password to verify: ")
+    check_password(password)
