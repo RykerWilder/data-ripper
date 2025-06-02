@@ -1,0 +1,11 @@
+# Cache python folders
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.egg-info/
+*.log
+*.sqlite3
+.env
+venv/
+.venv/
