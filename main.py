@@ -1,5 +1,5 @@
 from data_ripper.modules import PswChecker
-import colorama
+from colorama import Fore, Style
 
 def main():
     
@@ -15,3 +15,7 @@ def main():
         checker.check_password()
     else:
         print(f"{Fore.GREEN}[X] Invalid Choice{Style.RESET_ALL}")
+
+
+if __name__ == "__main__":
+    main()
