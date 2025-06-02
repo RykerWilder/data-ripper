@@ -1,5 +1,6 @@
 import requests
 import hashlib
+from colorama import Fore, Style
 
 class PswChecker:
     def __init__(self, password):
@@ -7,7 +8,7 @@ class PswChecker:
 
     def check_password(self):
         if not self.password:
-            print("Password cannot be empty!")
+            print(f"{Fore.RED}[X] Password cannot be empty{Style.RESET_ALL}")
             return
 
         sha1_password = hashlib.sha1(self.password.encode('utf-8')).hexdigest().upper()
@@ -17,15 +18,15 @@ class PswChecker:
         try:
             response = requests.get(url)
             if response.status_code != 200:
-                print("Error: Could not check password.")
+                print(f"{Fore.RED}[X]Error: Could not check password{Style.RESET_ALL}")
                 return
 
             for line in response.text.splitlines():
                 if line.startswith(suffix):
                     count = int(line.split(':')[1])
-                    print(f"⚠️ Password compromised! Found in {count} breaches.")
+                    print(f"{Fore.RED}[INFO]{Style.RESET_ALL}Password compromised! Found in {Fore.RED}{count}{Style.RESET_ALL} breaches")
                     return
-            print("✅ Strong password, not found in known breaches.")
+            print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL}Strong password, not found in known breaches")
 
         except requests.exceptions.RequestException as e:
-            print(f"Error: Failed to connect to the API. {e}")
+            print(f"{Fore.RED}Error: Failed to connect to the API: {e}{Style.RESET_ALL}")
