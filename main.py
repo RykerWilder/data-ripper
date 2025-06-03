@@ -1,18 +1,23 @@
-from data_ripper.modules import PswChecker
+from data_ripper.modules import PswChecker ,EmailChecker
 from colorama import Fore, Style
 
 def main():
     
     print(f""" 
         [{Fore.BLUE}1{Style.RESET_ALL}] Password Checker
+        [{Fore.BLUE}2{Style.RESET_ALL}] Email Checker
     """)
 
-    choice = input(f"{Fore.GREEN}[?] Select your choice => {Style.RESET_ALL}")
+    choice = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Select your choice => ")
 
     if choice == "1":
-        psw_to_check = input(f"{Fore.GREEN}[?] Insert password to check => {Style.RESET_ALL}")
-        checker = PswChecker(psw_to_check)
-        checker.check_password()
+        psw_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert password to check => ")
+        pws_checker = PswChecker(psw_to_check)
+        psw_checker.check_password()
+    elif choice == "2":
+        email_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert email to check => ")
+        email_checker = EmailChecker(email_to_check)
+        email_checker.check_email
     else:
         print(f"{Fore.GREEN}[X] Invalid Choice{Style.RESET_ALL}")
 
