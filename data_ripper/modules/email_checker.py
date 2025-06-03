@@ -6,12 +6,12 @@ class EmailChecker():
     def __init__(self, email):
         self.email = email
 
-    def check_hibp(email, api_key=None):
+    def check_hibp(self, email):
         headers = {"User-Agent": "HIBP-Checker-Python"}
         if api_key:
             headers["hibp-api-key"] = api_key
         
-        api_url = f"https://haveibeenpwned.com/api/v2/breachedaccount/{email}"
+        api_url = f"https://haveibeenpwned.com/api/v2/breachedaccount/{self.email}"
         
         try:
             response = requests.get(api_url, headers=headers)
@@ -32,7 +32,7 @@ class EmailChecker():
 
 # Esempio di utilizzo
 if __name__ == "__main__":
-    email_to_check = input(f"{Fore.GREEN}[?]Inserisci l'email da verificare => {Style.RESET_ALL}")
+    email_to_check = input(f"{Fore.GREEN}[?] Insert email to check => {Style.RESET_ALL}")
     
     print(f"{Fore.YELLOW}[!]Checking '{email}'...{Style.RESET_ALL}")
     
