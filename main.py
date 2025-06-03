@@ -1,7 +1,10 @@
 from data_ripper.modules import PswChecker ,EmailChecker
+from data_ripper.utils import print_welcome_message
 from colorama import Fore, Style
 
 def main():
+
+    print_welcome_message()
     
     print(f""" 
         [{Fore.BLUE}1{Style.RESET_ALL}] Password Checker
