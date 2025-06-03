@@ -15,7 +15,7 @@ class EmailChecker():
         
         try:
             response = requests.get(api_url, headers=headers)
-            response.raise_for_status()  # HTTP erro check
+            response.raise_for_status()  # HTTP error check
             
             if response.status_code == 200:
                 breaches = response.json()
@@ -23,7 +23,7 @@ class EmailChecker():
             elif response.status_code == 404:
                 return []  
             else:
-                print(f"Errore: {response.status_code} - {response.text}")
+                print(f"{Fore.RED}[X]Error: {response.status_code} - {response.text}{Style.RESET_ALL}")
                 return None
         
         except requests.exceptions.RequestException as e:
@@ -32,15 +32,14 @@ class EmailChecker():
 
 # Esempio di utilizzo
 if __name__ == "__main__":
-    email = input("Inserisci l'email da verificare: ")
-    api_key = None  # Inserisci la tua chiave HIBP qui se ne hai una
+    email_to_check = input(f"{Fore.GREEN}[?]Inserisci l'email da verificare => {Style.RESET_ALL}")
     
-    print(f"🔍 Controllo se '{email}' è stata coinvolta in data breach...")
+    print(f"{Fore.YELLOW}[!]Checking '{email}'...{Style.RESET_ALL}")
     
-    breaches = check_hibp(email, api_key)
+    breaches = check_hibp(email)
     
     if breaches is None:
-        print("Si è verificato un errore durante la verifica.")
+        print(f"{Fore.RED}[X]Error during check{Style.RESET_ALL}")
     elif not breaches:
         print("✅ Nessun breach trovato per questa email!")
     else:
