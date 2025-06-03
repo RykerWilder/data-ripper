@@ -6,7 +6,7 @@ class EmailChecker():
     def __init__(self, email):
         self.email = email
 
-    def check_hibp(self, email):
+    def check_email(self, email):
         headers = {"User-Agent": "HIBP-Checker-Python"}
         if api_key:
             headers["hibp-api-key"] = api_key
@@ -30,25 +30,22 @@ class EmailChecker():
             print(f"{Fore.RED}[X]Request error: {e}{Style.RESET_ALL}")
             return None
 
-# Esempio di utilizzo
-if __name__ == "__main__":
-    email_to_check = input(f"{Fore.GREEN}[?] Insert email to check => {Style.RESET_ALL}")
+    def email_checker_manager(self, email):
+        print(f"{Fore.YELLOW}[!]Checking '{email}'...{Style.RESET_ALL}")
+
+        breaches = check_email(email)
+
+        if breaches is None:
+            print(f"{Fore.RED}[X]Error during check{Style.RESET_ALL}")
+        elif not breaches:
+            print("✅ Nessun breach trovato per questa email!")
+        else:
+            print(f"❌ Trovati {len(breaches)} breach per '{email}':")
+            for breach in breaches:
+                print(f"\n- Nome: {breach['Name']}")
+                print(f"- Titolo: {breach['Title']}")
+                print(f"- Data del breach: {breach['BreachDate']}")
+                print(f"- Dati esposti: {', '.join(breach['DataClasses'])}")
     
-    print(f"{Fore.YELLOW}[!]Checking '{email}'...{Style.RESET_ALL}")
-    
-    breaches = check_hibp(email)
-    
-    if breaches is None:
-        print(f"{Fore.RED}[X]Error during check{Style.RESET_ALL}")
-    elif not breaches:
-        print("✅ Nessun breach trovato per questa email!")
-    else:
-        print(f"❌ Trovati {len(breaches)} breach per '{email}':")
-        for breach in breaches:
-            print(f"\n- Nome: {breach['Name']}")
-            print(f"- Titolo: {breach['Title']}")
-            print(f"- Data del breach: {breach['BreachDate']}")
-            print(f"- Dati esposti: {', '.join(breach['DataClasses'])}")
-    
-    # Rispetta il rate limiting (1.5 secondi tra le richieste)
+    # Timing
     time.sleep(1.5)

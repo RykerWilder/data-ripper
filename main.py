@@ -16,8 +16,7 @@ def main():
         psw_checker.check_password()
     elif choice == "2":
         email_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert email to check => ")
-        email_checker = EmailChecker(email_to_check)
-        email_checker.check_email
+        EmailChecker().email_checker_manager(email_to_check)
     else:
         print(f"{Fore.GREEN}[X] Invalid Choice{Style.RESET_ALL}")
 
