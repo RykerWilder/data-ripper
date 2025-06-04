@@ -15,7 +15,7 @@ def main():
 
     if choice == "1":
         psw_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert password to check => ")
-        pws_checker = PswChecker(psw_to_check)
+        psw_checker = PswChecker(psw_to_check)
         psw_checker.check_password()
     elif choice == "2":
         email_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert email to check => ")
