@@ -1,8 +1,12 @@
 from data_ripper.modules import PswChecker ,EmailChecker
-from data_ripper.utils import print_welcome_message
+from data_ripper.utils import print_welcome_message, exit
 from colorama import Fore, Style
+import signal
 
 def main():
+    
+    # ctrl+c handler
+    signal.signal(signal.SIGINT, exit)
 
     print_welcome_message()
     
