@@ -8,9 +8,9 @@ class ShodanScan():
     api_key = os.getenv("SHODAN_API_KEY")
     api = shodan.Shodan(api_key)
 
-    def search_shodan(query):
+    def search_shodan(self, query):
         try:
-            results = api.search(query)
+            results = self.api.search(query)
             for result in results['matches']:
                 print(f"IP: {result['ip_str']}")
                 print(f"Port: {result['port']}")
