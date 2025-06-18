@@ -33,14 +33,14 @@ class EmailChecker():
         if breaches is None:
             print(f"{Fore.RED}[X] Error during check{Style.RESET_ALL}")
         elif not breaches:
-            print(f"{Fore.GREEN}[✓] Nessun breach trovato per questa email!{Style.RESET_ALL}")
+            print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} No breaches found for this email")
         else:
-            print(f"{Fore.RED}[!] Trovati {len(breaches)} breach per '{email}':{Style.RESET_ALL}")
+            print(f"{Fore.RED}[!] Found {len(breaches)} breach for '{email}':{Style.RESET_ALL}")
             for breach in breaches:
-                print(f"\n- Nome: {Fore.CYAN}{breach['Name']}{Style.RESET_ALL}")
-                print(f"- Titolo: {breach['Title']}")
-                print(f"- Data del breach: {Fore.YELLOW}{breach['BreachDate']}{Style.RESET_ALL}")
-                print(f"- Dati esposti: {Fore.MAGENTA}{', '.join(breach['DataClasses'])}{Style.RESET_ALL}")
+                print(f"\n- Name: {Fore.CYAN}{breach['Name']}{Style.RESET_ALL}")
+                print(f"- Title: {breach['Title']}")
+                print(f"- BreachDate: {Fore.YELLOW}{breach['BreachDate']}{Style.RESET_ALL}")
+                print(f"- Exposed Data: {Fore.MAGENTA}{', '.join(breach['DataClasses'])}{Style.RESET_ALL}")
         
         # timing
         time.sleep(1.5)
