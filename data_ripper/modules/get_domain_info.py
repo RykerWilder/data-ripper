@@ -9,11 +9,11 @@ class GetDomainInfo:
             domain_info = whois.whois(domain)
             return domain_info
         except Exception as e:
-            return f"Errore durante il recupero delle informazioni WHOIS: {str(e)}"
+            return f"{Fore.RED}[X] Error retrieving WHOIS information: {str(e)}{Style.RESET_ALL}"
 
     def domain_info_manager(self, domain):
         
         result = self.get_domain_info(domain)
         
-        print(f"\n{Fore.GREEN}Informazioni WHOIS per {domain}:{Style.RESET_ALL}\n")
+        print(f"\n{Fore.BLUE}[INFO]{Style.RESET_ALL} WHOIS information for {Fore.BLUE}{domain}{Style.RESET_ALL}:\n")
         print(result)
