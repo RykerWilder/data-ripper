@@ -1,4 +1,4 @@
-from data_ripper.modules import PswChecker ,EmailChecker
+from data_ripper.modules import PswChecker ,EmailChecker, GetDomainInfo
 from data_ripper.utils import print_welcome_message, exit
 from colorama import Fore, Style
 import signal
@@ -13,7 +13,7 @@ def main():
     print(f""" 
         [{Fore.BLUE}1{Style.RESET_ALL}] Password Checker
         [{Fore.BLUE}2{Style.RESET_ALL}] Email Checker
-        [{Fore.BLUE}3{Style.RESET_ALL}] IP addr or domain Checker
+        [{Fore.BLUE}3{Style.RESET_ALL}] Get info about domain
     """)
 
     choice = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Select your choice => ")
@@ -26,7 +26,8 @@ def main():
         email_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert email to check => ")
         EmailChecker().email_checker_manager(email_to_check)
     elif choice == "3":
-        
+        domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert domain to check => ")
+        GetDomainInfo().domain_info_manager(domain_to_check)
     else:
         print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
 
