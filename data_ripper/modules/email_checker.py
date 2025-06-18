@@ -31,9 +31,9 @@ class EmailChecker():
         breaches = self.check_email(email)
 
         if breaches is None:
-            print(f"{Fore.RED}[X] Error during check{Style.RESET_ALL}")
+            print(f"{Fore.RED}[X] Error during check.{Style.RESET_ALL}")
         elif not breaches:
-            print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} No breaches found for this email")
+            print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} No breaches found for this email.")
         else:
             print(f"{Fore.RED}[!] Found {len(breaches)} breach for '{email}':{Style.RESET_ALL}")
             for breach in breaches:
