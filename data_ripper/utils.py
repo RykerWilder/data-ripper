@@ -2,7 +2,7 @@ from colorama import Fore, Style
 import sys
 
 def exit(signum, frame):
-    print(f"\n{Fore.RED}[X] Data Ripper stopped{Style.RESET_ALL}")
+    print(f"\n{Fore.RED}[X] Quit Data Ripper.{Style.RESET_ALL}")
     sys.exit(0)
 
 def print_welcome_message():
