@@ -15,5 +15,9 @@ class GetDomainInfo:
         
         result = self.get_domain_info(domain)
         
-        print(f"\n{Fore.BLUE}[INFO]{Style.RESET_ALL} WHOIS information for {Fore.BLUE}{domain}{Style.RESET_ALL}:\n")
-        print(result)
+        # print(f"\n{Fore.BLUE}[INFO]{Style.RESET_ALL} WHOIS information for {Fore.BLUE}{domain}{Style.RESET_ALL}:\n")
+        # print(result)
+        
+        converter = JSONToTXTConverter(result)
+        output_path = converter.convert_to_txt()
+        print(f"File generato con successo: {output_path}")

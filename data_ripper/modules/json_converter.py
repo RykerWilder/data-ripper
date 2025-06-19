@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-class JSONToTXTConverter:
+class JSONConverter:
     def __init__(self, json_data, output_filename=None):
         """
         Inizializza il converter con i dati JSON e un nome file opzionale
@@ -27,7 +27,7 @@ class JSONToTXTConverter:
     def _generate_default_filename(self):
         """Genera un nome file di default basato sulla data/ora"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        return f"api_results_{timestamp}.txt"
+        return f"domain_results_{timestamp}.txt"
     
     def _format_value(self, value, indent_level=0):
         """Formatta i valori in modo leggibile"""
