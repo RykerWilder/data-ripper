@@ -2,6 +2,7 @@ from data_ripper.modules import PswChecker ,EmailChecker, GetDomainInfo
 from data_ripper.utils import print_welcome_message, exit
 from colorama import Fore, Style
 import signal
+from getpass import getpass
 
 def main():
     
@@ -20,7 +21,7 @@ def main():
         choice = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Select your choice => ")
 
         if choice == "1":
-            psw_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert password to check => ")
+            psw_to_check = getpass(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert password to check => ")
             psw_checker = PswChecker(psw_to_check)
             psw_checker.check_password()
         elif choice == "2":
