@@ -12,8 +12,8 @@ def main():
     
     while True:
         print(f""" 
-            [{Fore.BLUE}1{Style.RESET_ALL}] Password Checker
-            [{Fore.BLUE}2{Style.RESET_ALL}] Email Checker
+            [{Fore.BLUE}1{Style.RESET_ALL}] Password checker
+            [{Fore.BLUE}2{Style.RESET_ALL}] Email checker
             [{Fore.BLUE}3{Style.RESET_ALL}] Get info about domain
         """)
 
