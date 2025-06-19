@@ -1,9 +1,9 @@
 # Data Ripper
 
 Data Ripper is an **Information Gathering Tool**, which allows you to:
-- Check if your password has been found in data breaches via HaveIBeenPwneed.
-- Check if your email has been found in data breaches via HaveIBeenPwneed.
-- Receive information about a domain via that will be saved in a .txt file.
+1. Check if your password has been found in data breaches via HaveIBeenPwneed.
+2. Check if your email has been found in data breaches via HaveIBeenPwneed.
+3. Receive information about a domain via that will be saved in a .txt file.
 ---
 
 ### Prerequisites
