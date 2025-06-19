@@ -1,20 +1,14 @@
-# Password Checker
+# Data Ripper
 
-A Python script that checks if a password has been compromised in known data breaches, using the **Have I Been Pwned** API.
-
----
-
-### Features
-- **Anonymous** password verification (using SHA-1 hash).
-- Uses the **k-Anonymity** API to preserve privacy.
-- Instant results with breach counts.
-
+Data Ripper is an **Information Gathering Tool**, which allows you to:
+- Check if your password has been found in data breaches via HaveIBeenPwneed.
+- Check if your email has been found in data breaches via HaveIBeenPwneed.
+- Receive information about a domain via that will be saved in a .txt file.
 ---
 
 ### Prerequisites
 - Python 3.x
-- `requests` library (for HTTP calls)
 
 ```bash
-pip install requests
+pip install -r requirements.txt
 ```
