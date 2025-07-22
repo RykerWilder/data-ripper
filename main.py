@@ -34,8 +34,7 @@ def main():
         elif choice == "4":
             domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert username to check => ")
             checker = UsernameChecker()
-            # Verifica un username su tutte le piattaforme
-            print("\nVerifica su tutte le piattaforme:")
+            # Verifica username
             results_all = checker.check_username_all_platforms("mario_rossi")
             print(results_all)
             # Salva i risultati in un file
@@ -44,8 +43,8 @@ def main():
             print("\nVerifica da file:")
             file_results = checker.check_usernames_from_file("usernames.txt")
             if file_results['status'] == 'success':
-            checker.save_results_to_file(file_results, "risultati_multipli.txt")
-            print(file_results.get('message', 'Operazione completata'))
+                checker.save_results_to_file(file_results, "risultati_multipli.txt")
+                print(file_results.get('message', 'Operazione completata'))
         else:
             print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
 
