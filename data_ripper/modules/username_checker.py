@@ -37,14 +37,12 @@ class UsernameChecker:
         }
 
     def check_username_all_platforms(self, username):
-        """Verifica un username su tutte le piattaforme supportate"""
         results = {}
         for platform in self.platforms:
             results[platform] = self.check_username(username, platform)
         return results
 
     def check_usernames_from_file(self, file_path):
-        """Verifica una lista di username da un file di testo"""
         if not os.path.exists(file_path):
             return {'status': 'error', 'message': 'File non trovato'}
         
@@ -62,7 +60,6 @@ class UsernameChecker:
             return {'status': 'error', 'message': str(e)}
 
     def save_results_to_file(self, results, output_file):
-        """Salva i risultati in un file di testo"""
         try:
             with open(output_file, 'w') as file:
                 if isinstance(results, dict):
@@ -84,3 +81,16 @@ class UsernameChecker:
             return {'status': 'success', 'message': f'Risultati salvati in {output_file}'}
         except Exception as e:
             return {'status': 'error', 'message': str(e)}
+    
+    def username_checker_manager(self, username):
+        
+        # Verifica username
+        results = checker.check_username_all_platforms(username)
+        # Salva i risultati in un file
+        checker.save_results_to_file(results, "risultati_username.txt")
+        # Verifica una lista di username da file
+        print("\nVerifica da file:")
+        file_results = checker.check_usernames_from_file("usernames.txt")
+        if file_results['status'] == 'success':
+            checker.save_results_to_file(file_results, "risultati_multipli.txt")
+            print(file_results.get('message', 'Operazione completata'))

@@ -32,19 +32,9 @@ def main():
             domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert domain to check => ")
             GetDomainInfo().domain_info_manager(domain_to_check)
         elif choice == "4":
-            domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert username to check => ")
-            checker = UsernameChecker()
-            # Verifica username
-            results_all = checker.check_username_all_platforms("mario_rossi")
-            print(results_all)
-            # Salva i risultati in un file
-            checker.save_results_to_file(results_all, "risultati_username.txt")
-            # Verifica una lista di username da file
-            print("\nVerifica da file:")
-            file_results = checker.check_usernames_from_file("usernames.txt")
-            if file_results['status'] == 'success':
-                checker.save_results_to_file(file_results, "risultati_multipli.txt")
-                print(file_results.get('message', 'Operazione completata'))
+            usr_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert username to check => ")
+            usr_checker = UsernameChecker()
+            usr_checker.username_checker_manager(usr_to_check)
         else:
             print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
 
