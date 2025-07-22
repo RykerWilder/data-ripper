@@ -31,15 +31,21 @@ class UsernameChecker:
             }
         }
         
-        # Headers per simulare un browser
         self.headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
 
     def check_username_all_platforms(self, username):
+        """Restituisce una struttura vuota per ogni piattaforma"""
         results = {}
         for platform in self.platforms:
-            results[platform] = self.check_username(username, platform)
+            results[platform] = {
+                'status': 'success',
+                'exists': False,
+                'platform': platform,
+                'username': username,
+                'url': self.platforms[platform]['url'].format(username)
+            }
         return results
 
     def check_usernames_from_file(self, file_path):
@@ -82,15 +88,25 @@ class UsernameChecker:
         except Exception as e:
             return {'status': 'error', 'message': str(e)}
     
-    def username_checker_manager(self, username):
+    def username_checker_manager(self):
+        default_file = "username.txt"
         
-        # Verifica username
-        results = checker.check_username_all_platforms(username)
-        # Salva i risultati in un file
-        checker.save_results_to_file(results, "risultati_username.txt")
-        # Verifica una lista di username da file
-        print("\nVerifica da file:")
-        file_results = checker.check_usernames_from_file("usernames.txt")
-        if file_results['status'] == 'success':
-            checker.save_results_to_file(file_results, "risultati_multipli.txt")
-            print(file_results.get('message', 'Operazione completata'))
+        # Cerca automaticamente il file username.txt
+        if os.path.exists(default_file):
+            print(f"Trovato file {default_file}, procedo con la verifica...")
+            file_results = self.check_usernames_from_file(default_file)
+            if file_results['status'] == 'success':
+                self.save_results_to_file(file_results, "risultati_multipli.txt")
+                print(f"Verifica completata. Risultati salvati in 'risultati_multipli.txt'")
+            else:
+                print(f"Errore nel processare il file: {file_results['message']}")
+        else:
+            # Se il file non esiste, chiedi un username manuale
+            print(f"File {default_file} non trovato nella directory corrente")
+            username = input("Inserisci manualmente un username da verificare: ").strip()
+            if username:
+                results = self.check_username_all_platforms(username)
+                self.save_results_to_file(results, "risultati_username.txt")
+                print(f"Risultati salvati in 'risultati_username.txt'")
+            else:
+                print("Nessun username inserito, operazione annullata")

@@ -32,9 +32,8 @@ def main():
             domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert domain to check => ")
             GetDomainInfo().domain_info_manager(domain_to_check)
         elif choice == "4":
-            usr_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert username to check => ")
             usr_checker = UsernameChecker()
-            usr_checker.username_checker_manager(usr_to_check)
+            usr_checker.username_checker_manager()
         else:
             print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
 
