@@ -36,7 +36,8 @@ class UsernameChecker:
         }
 
     def check_username_all_platforms(self, username):
-        """Restituisce una struttura vuota per ogni piattaforma"""
+        
+        # Restituisce una struttura vuota per ogni piattaforma
         results = {}
         for platform in self.platforms:
             results[platform] = {
@@ -93,20 +94,20 @@ class UsernameChecker:
         
         # Cerca automaticamente il file username.txt
         if os.path.exists(default_file):
-            print(f"Trovato file {default_file}, procedo con la verifica...")
+            print(f"Found file {default_file}, proceeding with the verification...")
             file_results = self.check_usernames_from_file(default_file)
             if file_results['status'] == 'success':
-                self.save_results_to_file(file_results, "risultati_multipli.txt")
-                print(f"Verifica completata. Risultati salvati in 'risultati_multipli.txt'")
+                self.save_results_to_file(file_results, "username_results.txt")
+                print(f"Verification completed. Results saved in 'username_results.txt'")
             else:
-                print(f"Errore nel processare il file: {file_results['message']}")
+                print(f"Error processing file: {file_results['message']}")
         else:
             # Se il file non esiste, chiedi un username manuale
-            print(f"File {default_file} non trovato nella directory corrente")
-            username = input("Inserisci manualmente un username da verificare: ").strip()
+            print(f"File {default_file} not found in the current directory")
+            username = input("Insert username to check => ").strip()
             if username:
                 results = self.check_username_all_platforms(username)
-                self.save_results_to_file(results, "risultati_username.txt")
-                print(f"Risultati salvati in 'risultati_username.txt'")
+                self.save_results_to_file(results, "username_results.txt")
+                print(f"Results saved in 'username_results.txt'")
             else:
-                print("Nessun username inserito, operazione annullata")
+                print("No username entered")
