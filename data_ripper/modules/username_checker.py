@@ -36,27 +36,6 @@ class UsernameChecker:
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
 
-    def check_username(self, username, platform):
-        """Verifica se un username esiste su una specifica piattaforma"""
-        if platform not in self.platforms:
-            return {'status': 'error', 'message': f'Piattaforma {platform} non supportata'}
-        
-        url = self.platforms[platform]['url'].format(username)
-        try:
-            response = requests.get(url, headers=self.headers)
-            content = response.text
-            
-            if response.status_code == 404:
-                return {'status': 'success', 'exists': False, 'platform': platform, 'username': username}
-            
-            if self.platforms[platform]['error'].lower() in content.lower():
-                return {'status': 'success', 'exists': False, 'platform': platform, 'username': username}
-            else:
-                return {'status': 'success', 'exists': True, 'platform': platform, 'username': username, 'url': url}
-                
-        except Exception as e:
-            return {'status': 'error', 'message': str(e)}
-
     def check_username_all_platforms(self, username):
         """Verifica un username su tutte le piattaforme supportate"""
         results = {}
