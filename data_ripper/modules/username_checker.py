@@ -1,4 +1,5 @@
 import requests
+from colorama import Fore, Style
 from bs4 import BeautifulSoup
 import os
 
@@ -81,7 +82,7 @@ class UsernameChecker:
                             file.write("\n")
                     else:
                         for platform, data in results.items():
-                            exists = "Esiste" if data.get('exists') else "Non esiste"
+                            exists = "Exists" if data.get('exists') else "Non esiste"
                             file.write(f"{platform.capitalize()}: {exists}\n")
                             if data.get('url'):
                                 file.write(f"  URL: {data['url']}\n")
@@ -94,20 +95,20 @@ class UsernameChecker:
         
         # Cerca automaticamente il file username.txt
         if os.path.exists(default_file):
-            print(f"Found file {default_file}, proceeding with the verification...")
+            print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} Found file {default_file}, proceeding with the verification...")
             file_results = self.check_usernames_from_file(default_file)
             if file_results['status'] == 'success':
                 self.save_results_to_file(file_results, "username_results.txt")
-                print(f"Verification completed. Results saved in 'username_results.txt'")
+                print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} Verification completed. Results saved in 'username_results.txt'")
             else:
-                print(f"Error processing file: {file_results['message']}")
+                print(f"{Fore.RED}[X] Error processing file: {file_results['message']}")
         else:
             # Se il file non esiste, chiedi un username manuale
-            print(f"File {default_file} not found in the current directory")
-            username = input("Insert username to check => ").strip()
+            print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} File {default_file} not found in the current directory")
+            username = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert username to check => ").strip()
             if username:
                 results = self.check_username_all_platforms(username)
                 self.save_results_to_file(results, "username_results.txt")
-                print(f"Results saved in 'username_results.txt'")
+                print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} Results saved in 'username_results.txt'")
             else:
-                print("No username entered")
+                print(f"{Fore.RED}[X] No username entered")
