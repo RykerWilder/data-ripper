@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+username_results.txt
+domain_results*
 *.egg-info/
 *.log
 *.sqlite3
