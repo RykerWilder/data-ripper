@@ -22,14 +22,14 @@ def main():
         choice = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Select your choice => ")
 
         if choice == "1":
-            psw_to_check = getpass(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert password to check => ")
+            psw_to_check = getpass(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert password to check => ").strip()
             psw_checker = PswChecker(psw_to_check)
             psw_checker.check_password()
         elif choice == "2":
-            email_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert email to check => ")
+            email_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert email to check => ").strip()
             EmailChecker().email_checker_manager(email_to_check)
         elif choice == "3":
-            domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert domain to check => ")
+            domain_to_check = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert domain to check => ").strip()
             GetDomainInfo().domain_info_manager(domain_to_check)
         elif choice == "4":
             usr_checker = UsernameChecker()
