@@ -1,4 +1,4 @@
-from data_ripper.modules import PswChecker ,EmailChecker, GetDomainInfo, UsernameChecker
+from data_ripper.modules import PswChecker ,EmailChecker, GetDomainInfo, UsernameChecker, MACAddressInfo
 from data_ripper.utils import print_welcome_message, exit
 from colorama import Fore, Style
 import signal
@@ -36,7 +36,8 @@ def main():
             usr_checker = UsernameChecker()
             usr_checker.username_checker_manager()
         elif choice == "5":
-            print("MAC Address info")
+            mac_lookup = MACLookup()
+            mac_lookup.interactive_lookup()
         else:
             print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
 

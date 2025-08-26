@@ -124,15 +124,3 @@ class MACLookup:
                 for key, value in result.items():
                     print(f"{key}: {value}")
                 print("-" * 30)
-
-# Esempio di utilizzo
-if __name__ == "__main__":
-    # Crea un'istanza della classe
-    mac_lookup = MACLookup()
-    
-    # Modalità interattiva
-    mac_lookup.interactive_lookup()
-    
-    # Oppure uso programmatico
-    # result = mac_lookup.get_vendor_info("00:1A:2B:3C:4D:5E")
-    # print(result)
