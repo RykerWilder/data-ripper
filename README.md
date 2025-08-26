@@ -1,7 +1,7 @@
 # Data Ripper
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![data_ripper](./data-ripper/assets)
+![data_ripper](./data-ripper/assets/data-ripper.png)
 
 Data Ripper is an **Information Gathering Tool**, which allows you to:
 1. Check if your password has been found in data breaches via HaveIBeenPwneed.
