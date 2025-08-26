@@ -17,6 +17,7 @@ def main():
             [{Fore.BLUE}2{Style.RESET_ALL}] Email checker
             [{Fore.BLUE}3{Style.RESET_ALL}] Get info about domain
             [{Fore.BLUE}4{Style.RESET_ALL}] Username checker
+            [{Fore.BLUE}5{Style.RESET_ALL}] MAC Address info
         """)
 
         choice = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Select your choice => ")
@@ -34,6 +35,8 @@ def main():
         elif choice == "4":
             usr_checker = UsernameChecker()
             usr_checker.username_checker_manager()
+        elif choice == "5":
+            print("MAC Address info")
         else:
             print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
 
