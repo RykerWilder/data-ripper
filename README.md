@@ -1,5 +1,8 @@
 # Data Ripper
 
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![data_ripper](./data-ripper/assets)
+
 Data Ripper is an **Information Gathering Tool**, which allows you to:
 1. Check if your password has been found in data breaches via HaveIBeenPwneed.
 2. Check if your email has been found in data breaches via HaveIBeenPwneed.
@@ -12,5 +15,7 @@ Data Ripper is an **Information Gathering Tool**, which allows you to:
 - Python 3.x
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```

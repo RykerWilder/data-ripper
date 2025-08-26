@@ -1,4 +1,4 @@
-from data_ripper.modules import PswChecker ,EmailChecker, GetDomainInfo, UsernameChecker, MACAddressInfo
+from data_ripper.modules import PswChecker ,EmailChecker, GetDomainInfo, UsernameChecker, MACLookup
 from data_ripper.utils import print_welcome_message, exit
 from colorama import Fore, Style
 import signal
