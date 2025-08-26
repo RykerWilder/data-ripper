@@ -1,6 +1,7 @@
 import requests
 import json
 import re
+from colorama import Fore, Style
 
 class MACLookup:
     def __init__(self, api_key=None):
@@ -46,7 +47,7 @@ class MACLookup:
         :return: Dizionario con i risultati o None in caso di errore
         """
         if not self.validate_mac(mac_address):
-            return {"error": "Formato MAC address non valido"}
+            return {f"{Fore.RED}[X] Invalid MAC address format.{Style.RESET_ALL}"}
         
         formatted_mac = self.format_mac(mac_address)
         
@@ -62,65 +63,47 @@ class MACLookup:
                 data = response.json()
                 return data
             else:
-                return {"error": f"Errore API: {response.status_code}"}
+                return {f"{Fore.RED}[X] API error: {response.status_code}{Style.RESET_ALL}"}
                 
         except requests.exceptions.RequestException as e:
-            return {"error": f"Errore di connessione: {str(e)}"}
+            return {f"{Fore.RED}[X] Connection error: {str(e)}{Style.RESET_ALL}"}
         except json.JSONDecodeError:
-            return {"error": "Errore nel parsing della risposta JSON"}
+            return {f"{Fore.RED}[X] Parsing error.{Style.RESET_ALL}"}
     
     def get_vendor_info(self, mac_address):
-        """
-        Ottiene informazioni specifiche sul vendor
-        :param mac_address: MAC address da cercare
-        :return: Informazioni sul vendor o messaggio di errore
-        """
-        result = self.lookup(mac_address)
+        try:
+            result = self.lookup(mac_address)  
+            # Se result è un set (cioè contiene un messaggio di errore)
+            if isinstance(result, set):
+                # Estrae il messaggio di errore dal set
+                error_message = next(iter(result)) if result else "Unknown error"
+                print(f"{Fore.RED}{error_message}{Style.RESET_ALL}")
+                return {"Vendor": "Unknown", "Address": "Unknown"}
         
-        if "error" in result:
-            return result
+            return {
+                "Vendor": result.get('company'),
+                "Address": result.get('address'),
+                "Country": result.get('country'),
+                "MAC Prefix": result.get('macPrefix'),
+                "Block Type": result.get('blockType'),
+                "Block Size": result.get('blockSize'),
+                "Updated": result.get('updated'),
+                "Is Random": result.get('isRand'),
+                "Is Private": result.get('isPrivate')
+            }
         
-        vendor_info = {
-            "MAC Address": self.format_mac(mac_address),
-            "Vendor": result.get('company', 'Sconosciuto'),
-            "Address": result.get('address', 'Non disponibile'),
-            "Country": result.get('country', 'Non disponibile'),
-            "Type": result.get('type', 'Non disponibile'),
-            "Is Private": result.get('isPrivate', 'Non disponibile')
-        }
-        
-        return vendor_info
+        except Exception as e:
+            print(f"{Fore.RED}[X] Error during the info vendor recovery: {e}{Style.RESET_ALL}")
     
-    def interactive_lookup(self):
-        """
-        Modalità interattiva per l'input utente
-        """
-        print("=== MAC Address Lookup Tool ===")
-        print("Inserisci 'quit' per uscire")
-        print("-" * 40)
-        
-        while True:
-            mac_input = input("\nInserisci il MAC address: ").strip()
+    def mac_address_manager(self, mac_input):          
+        print(f"{Fore.BLUE}[INFO]{Style.RESET_ALL} Loading...")
             
-            if mac_input.lower() in ['quit', 'exit', 'q']:
-                print("Arrivederci!")
-                break
+        # Esegue la ricerca
+        result = self.get_vendor_info(mac_input)
             
-            if not mac_input:
-                print("Per favore, inserisci un MAC address.")
-                continue
-            
-            print("\nRicerca in corso...")
-            
-            # Esegue la ricerca
-            result = self.get_vendor_info(mac_input)
-            
-            # Mostra i risultati
-            if "error" in result:
-                print(f"❌ Errore: {result['error']}")
-            else:
-                print("✅ Risultati della ricerca:")
-                print("-" * 30)
-                for key, value in result.items():
-                    print(f"{key}: {value}")
-                print("-" * 30)
+        # Mostra i risultati
+        if "error" in result:
+            print(f"{Fore.RED}[X]  {result['error']}{Style.RESET_ALL}")
+        else:
+            for key, value in result.items():
+                print(f"{key}: {value}")

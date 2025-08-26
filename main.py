@@ -37,9 +37,10 @@ def main():
             usr_checker.username_checker_manager()
         elif choice == "5":
             mac_lookup = MACLookup()
-            mac_lookup.interactive_lookup()
+            mac_input = input(f"{Fore.GREEN}[?]{Style.RESET_ALL} Insert MAC Address => ").strip()
+            mac_lookup.mac_address_manager(mac_input)
         else:
-            print(f"{Fore.RED}[X] Invalid Choice{Style.RESET_ALL}")
+            print(f"{Fore.RED}[X] Invalid Choice.{Style.RESET_ALL}")
 
 
 if __name__ == "__main__":
